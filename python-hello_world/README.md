@@ -1,1 +1,1 @@
-Pytrhon - Hello World
+Python - Hello World
