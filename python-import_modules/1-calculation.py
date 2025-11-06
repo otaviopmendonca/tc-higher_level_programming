@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from calculator_1 import add, sub, mul, div
-a = 80
-b = 4
+a = 10
+b = 5
 add = add(a, b)
 sub = sub(a, b)
 mul = mul(a, b)
