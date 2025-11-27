@@ -1,0 +1,66 @@
+# tests/3-say_my_name.txt
+
+Testing say_my_name function
+============================
+
+Import the function
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Normal cases with both names
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+>>> say_my_name("Walter", "White")
+My name is Walter White
+
+Case with only first name
+>>> say_my_name("Bob")
+My name is Bob
+
+Error cases - first_name not a string
+>>> say_my_name(12, "White")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+>>> say_my_name([1, 2, 3], "White")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+>>> say_my_name(None, "White")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Error cases - last_name not a string
+>>> say_my_name("John", 42)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+>>> say_my_name("John", [1, 2, 3])
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+>>> say_my_name("John", None)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+Error cases - both not strings
+>>> say_my_name(12, 42)
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Edge case - empty strings
+>>> say_my_name("", "")
+My name is 
+
+>>> say_my_name("", "Doe")
+My name is  Doe
+
+>>> say_my_name("John", "")
+My name is John
