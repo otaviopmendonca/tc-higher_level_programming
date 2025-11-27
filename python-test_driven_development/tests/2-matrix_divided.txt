@@ -1,0 +1,56 @@
+# tests/2-matrix_divided.txt
+
+Testing matrix_divided function
+================================
+
+Import the function
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+If not list of lists
+>>> matrix_divided([1, 2, 3], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+If does not contain integers/float
+>>> matrix_divided(["wow", "hi", "hello"], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+If the matrix's rows have different sizes
+>>> matrix_divided([[1, 2, 3], [1, 2], [1]], 2)
+Traceback (most recent call last):
+...
+TypeError: Each row of the matrix must have the same size
+
+If div is not a number
+>>> matrix_divided([[1, 2, 3], [3, 2, 1]], "wowzers")
+Traceback (most recent call last):
+...
+TypeError: div must be a number
+
+If div is zero
+>>> matrix_divided([[1, 2, 3], [3, 2, 1]], 0)
+Traceback (most recent call last):
+...
+ZeroDivisionError: division by zero
+
+Normal tests
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+No arguments
+>>> matrix_divided()
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+>>> matrix_divided([[1, 2, 3], [3, 2, 1]])
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+Ifinite div
+>>> matrix_divided([[1, 2, 3], [3, 2, 1]], float('inf'))
+[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
