@@ -1,44 +1,128 @@
-# tests/0-add_integer.txt
+# tests/101-lazy_matrix_mul.txt
 
-Testing add_integer function
-============================
+Testing lazy_matrix_mul function
+================================
 
-First, import the function:
->>> add_integer = __import__('0-add_integer').add_integer
+Import the function
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
-Basic tests:
->>> add_integer(1, 2)
-3
+Normal multiplication cases
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+array([[ 7, 10],
+       [15, 22]])
 
->>> add_integer(100, -2)
-98
+>>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+array([[13, 16]])
 
-Default parameter:
->>> add_integer(2)
-100
+>>> lazy_matrix_mul([[5]], [[6]])
+array([[30]])
 
-Float conversion:
->>> add_integer(100.3, -2)
-98
-
-Error handling:
->>> add_integer(4, "School")
+Error cases - missing arguments
+>>> lazy_matrix_mul([[1, 2, 3]])
 Traceback (most recent call last):
 ...
-TypeError: b must be an integer
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
 
->>> add_integer(None)
+>>> lazy_matrix_mul()
 Traceback (most recent call last):
 ...
-TypeError: a must be an integer
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
 
-Float overflow:
->>> add_integer(float('inf'))
+Error cases - not lists
+>>> lazy_matrix_mul("not a list", [[1, 2]])
 Traceback (most recent call last):
 ...
-OverflowError: cannot convert float infinity to integer
+TypeError: m_a must be a list
 
->>> add_integer(1, float('inf'))
+>>> lazy_matrix_mul([[1, 2]], "not a list")
 Traceback (most recent call last):
 ...
-OverflowError: cannot convert float infinity to integer
+TypeError: m_b must be a list
+
+>>> lazy_matrix_mul(123, [[1, 2]])
+Traceback (most recent call last):
+...
+TypeError: m_a must be a list
+
+Error cases - not list of lists
+>>> lazy_matrix_mul([1, 2, 3], [[1, 2]])
+Traceback (most recent call last):
+...
+TypeError: m_a must be a list of lists
+
+>>> lazy_matrix_mul([[1, 2]], [3, 4, 5])
+Traceback (most recent call last):
+...
+TypeError: m_b must be a list of lists
+
+Error cases - empty matrices
+>>> lazy_matrix_mul([], [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: m_a can't be empty
+
+>>> lazy_matrix_mul([[]], [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: m_a can't be empty
+
+>>> lazy_matrix_mul([[1, 2]], [])
+Traceback (most recent call last):
+...
+ValueError: m_b can't be empty
+
+>>> lazy_matrix_mul([[1, 2]], [[]])
+Traceback (most recent call last):
+...
+ValueError: m_b can't be empty
+
+Error cases - non-numeric elements
+>>> lazy_matrix_mul([[1, "a"]], [[1, 2]])
+Traceback (most recent call last):
+...
+TypeError: m_a should contain only integers or floats
+
+>>> lazy_matrix_mul([[1, 2]], [["b", 3]])
+Traceback (most recent call last):
+...
+TypeError: m_b should contain only integers or floats
+
+>>> lazy_matrix_mul([[1, None]], [[1, 2]])
+Traceback (most recent call last):
+...
+TypeError: m_a should contain only integers or floats
+
+Error cases - non-rectangular matrices
+>>> lazy_matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+...
+TypeError: each row of m_a must be of the same size
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3]])
+Traceback (most recent call last):
+...
+TypeError: each row of m_b must be of the same size
+
+Error cases - can't be multiplied
+>>> lazy_matrix_mul([[1, 2]], [[1, 2, 3]])
+Traceback (most recent call last):
+...
+ValueError: m_a and m_b can't be multiplied
+
+>>> lazy_matrix_mul([[1, 2, 3]], [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: m_a and m_b can't be multiplied
+
+Edge cases
+>>> lazy_matrix_mul([[0, 0], [0, 0]], [[1, 2], [3, 4]])
+array([[0, 0],
+       [0, 0]])
+
+>>> lazy_matrix_mul([[1, 0], [0, 1]], [[1, 2], [3, 4]])
+array([[1, 2],
+       [3, 4]])
+
+>>> lazy_matrix_mul([[1.5, 2.5], [3.5, 4.5]], [[2, 0], [0, 2]])
+array([[3., 5.],
+       [7., 9.]])
