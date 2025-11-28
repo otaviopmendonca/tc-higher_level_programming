@@ -1,0 +1,56 @@
+# tests/5-text_indentation.txt
+
+Tests text_indentation function
+===============================
+
+Import the function
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Correct parameter for text
+>>> text_indentation("Lorem ipsum, dolor? lorem lorem: ipsum dolor")
+Lorem ipsum, dolor?
+<BLANKLINE>
+lorem lorem:
+<BLANKLINE>
+ipsum dolor
+
+Text with spaces after special chars
+>>> text_indentation("Hello.   World")
+Hello.
+<BLANKLINE>
+World
+
+Text not a str object
+>>> text_indentation(123)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Empty string
+>>> text_indentation("")
+
+Text with only special characters
+>>> text_indentation(".:?")
+.
+<BLANKLINE>
+:
+<BLANKLINE>
+?
+<BLANKLINE>
+
+Text with spaces before and after
+>>> text_indentation("   Hello.   ")
+Hello.
+<BLANKLINE>
+
+Missing one argument
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+Multiple spaces between words
+>>> text_indentation("Hello    World.    Test")
+Hello    World.
+<BLANKLINE>
+Test
