@@ -1,0 +1,97 @@
+# tests/101-lazy_matrix_mul.txt
+
+Testing lazy_matrix_mul function
+================================
+
+Import the function
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Normal multiplication cases
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+array([[ 7, 10],
+       [15, 22]])
+
+>>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+array([[13, 16]])
+
+>>> lazy_matrix_mul([[5]], [[6]])
+array([[30]])
+
+Error cases - scalar operands (NumPy messages)
+>>> lazy_matrix_mul("Holberton", [[5, 6], [7, 8]])
+Traceback (most recent call last):
+...
+ValueError: Scalar operands are not allowed, use '*' instead
+
+>>> lazy_matrix_mul([[1, 2]], "School")
+Traceback (most recent call last):
+...
+ValueError: Scalar operands are not allowed, use '*' instead
+
+>>> lazy_matrix_mul(42, [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: Scalar operands are not allowed, use '*' instead
+
+Error cases - empty matrices (NumPy messages)
+>>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+...
+ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
+
+>>> lazy_matrix_mul([[1, 2]], [[]])
+Traceback (most recent call last):
+...
+ValueError: shapes (1,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
+
+Error cases - missing arguments
+>>> lazy_matrix_mul([[1, 2, 3]])
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+>>> lazy_matrix_mul()
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+Error cases - non-rectangular matrices
+>>> lazy_matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+...
+ValueError: setting an array element with a sequence.
+
+Error cases - can't be multiplied
+>>> lazy_matrix_mul([[1, 2]], [[1, 2, 3]])
+Traceback (most recent call last):
+...
+ValueError: shapes (1,2) and (1,3) not aligned: 2 (dim 1) != 1 (dim 0)
+
+>>> lazy_matrix_mul([[1, 2, 3]], [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: shapes (1,3) and (1,2) not aligned: 3 (dim 1) != 1 (dim 0)
+
+Error cases - non-numeric elements
+>>> lazy_matrix_mul([[1, "a"]], [[1, 2]])
+Traceback (most recent call last):
+...
+ValueError: setting an array element with a sequence.
+
+>>> lazy_matrix_mul([[1, 2]], [["b", 3]])
+Traceback (most recent call last):
+...
+ValueError: setting an array element with a sequence.
+
+Edge cases
+>>> lazy_matrix_mul([[0, 0], [0, 0]], [[1, 2], [3, 4]])
+array([[0, 0],
+       [0, 0]])
+
+>>> lazy_matrix_mul([[1, 0], [0, 1]], [[1, 2], [3, 4]])
+array([[1, 2],
+       [3, 4]])
+
+>>> lazy_matrix_mul([[1.5, 2.5], [3.5, 4.5]], [[2, 0], [0, 2]])
+array([[3., 5.],
+       [7., 9.]])
