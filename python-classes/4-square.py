@@ -15,7 +15,7 @@ class Square:
         """
         Initializes a new Square instance.
         """
-        self.size = size 
+        self.size = size
 
     @property
     def size(self):
