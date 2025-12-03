@@ -4,6 +4,7 @@ Square class module
 This module defines a Square class with position coordinates.
 """
 
+
 class Square:
     """Defines a square with size and position properties"""
 
