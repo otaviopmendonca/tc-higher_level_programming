@@ -1,18 +1,41 @@
 # tests/1-my_list.txt
 
-Test for MyList.print_sorted()
-==============================
+Testing MyList class functionality
+==================================
 
+Import the class
 >>> MyList = __import__('1-my_list').MyList
+
+Test 1: Standard list of positive integers
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
 >>> my_list.append(2)
 >>> my_list.append(3)
 >>> my_list.append(5)
->>> print(my_list)
-[1, 4, 2, 3, 5]
+>>> print("Original list:", my_list)
+Original list: [1, 4, 2, 3, 5]
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
->>> print(my_list)
-[1, 4, 2, 3, 5]
+>>> print("Original list after sorting:", my_list)
+Original list after sorting: [1, 4, 2, 3, 5]
+
+Test 2: Test with an empty list
+>>> empty_list = MyList()
+>>> empty_list.print_sorted()
+[]
+
+Test 3: Test with a single element
+>>> single = MyList()
+>>> single.append(42)
+>>> single.print_sorted()
+[42]
+
+Test 4: Test with negative numbers and zero
+>>> neg_list = MyList()
+>>> neg_list.append(-5)
+>>> neg_list.append(10)
+>>> neg_list.append(-3)
+>>> neg_list.append(0)
+>>> neg_list.print_sorted()
+[-5, -3, 0, 10]
