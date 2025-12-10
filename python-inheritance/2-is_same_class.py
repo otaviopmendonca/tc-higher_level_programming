@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 2-is_same_class module.
-Contains the is_same_class function which checks for exact object type equality.
+Contains the is_same_class function which checks 
+for exact object type equality.
 """
 
 
