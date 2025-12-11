@@ -12,12 +12,14 @@ class MyInt(int):
 
     def __eq__(self, value):
         """
-        Overrides == operator. Returns the result of the standard != comparison.
+        Overrides == operator. Returns the result of
+        the standard != comparison.
         """
         return not super().__eq__(value)
 
     def __ne__(self, value):
         """
-        Overrides != operator. Returns the result of the standard == comparison.
+        Overrides != operator. Returns the result of
+        the standard == comparison.
         """
         return not super().__ne__(value)
