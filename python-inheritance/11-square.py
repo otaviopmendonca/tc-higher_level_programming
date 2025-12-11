@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 11-square module.
-Defines the class Square that inherits from Rectangle, 
+Defines the class Square that inherits from Rectangle,
 with custom string representation.
 """
 
