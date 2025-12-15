@@ -17,12 +17,12 @@ try:
             if len(parts) < 7:
                 continue
 
+            status = parts[-2]
             size = int(parts[-1])
-            code = parts[-2]
 
             total_size += size
-            if code in status_counts:
-                status_counts[code] += 1
+            if status in status_counts:
+                status_counts[status] += 1
 
             line_count += 1
 
